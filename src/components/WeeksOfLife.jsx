@@ -261,7 +261,7 @@ export default function WeeksOfLife() {
         const isCurrent = weekNumber === stats.weeksLived;
         const lifeEvent = getLifeEventForWeek(weekNumber);
         
-        let cellClass = "relative w-3 h-3 rounded-sm transition-all duration-300 cursor-pointer hover:scale-125 flex items-center justify-center ";
+        let cellClass = "relative w-2 h-2 sm:w-3 sm:h-3 md:w-4 md:h-4 lg:w-5 lg:h-5 xl:w-6 xl:h-6 rounded-sm transition-all duration-300 cursor-pointer hover:scale-125 flex items-center justify-center ";
         let style = {};
         let content = null;
         

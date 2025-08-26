@@ -260,17 +260,22 @@ export default function WeeksOfLife() {
       const year = Math.floor(startWeek / weeksPerYear);
       const halfYear = (rowIndex % 2 === 0) ? 1 : 2; // First or second half of year
 
+      // Always create exactly weeksPerRow blocks for consistent row length
       for (let week = 0; week < weeksPerRow; week++) {
         const weekNumber = startWeek + week;
         const isPast = weekNumber < stats.weeksLived;
         const isCurrent = weekNumber === stats.weeksLived;
         const lifeEvent = getLifeEventForWeek(weekNumber);
+        const isValidWeek = weekNumber < (totalYears * weeksPerYear); // Don't exceed total life span
 
-        let cellClass = "relative w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 lg:w-7 lg:h-7 xl:w-8 xl:h-8 rounded-sm transition-all duration-300 cursor-pointer hover:scale-125 flex items-center justify-center ";
+        let cellClass = "relative md:w-6 md:h-6 lg:w-7 lg:h-7 xl:w-8 xl:h-8 rounded-sm transition-all duration-300 cursor-pointer hover:scale-125 flex items-center justify-center ";
         let style = {};
         let content = null;
 
-        if (isPast) {
+        if (!isValidWeek) {
+          // Empty placeholder for consistent row length
+          cellClass += "bg-transparent ";
+        } else if (isPast) {
           // Use the same gradient pattern for all past weeks, regardless of events
           const hue = ((weekNumber / 52) * 30 + 200) % 360;
           const saturation = 60 + Math.sin(weekNumber / 26) * 20;
@@ -285,7 +290,7 @@ export default function WeeksOfLife() {
             const IconComponent = lifeEvent.icon;
             content = (
               <IconComponent
-                className={`absolute text-white w-3 h-3 sm:w-4 sm:h-4 transform ${isPersonal ? 'scale-110 animate-bounce' : 'scale-100'}`}
+                className={`absolute text-white w-4 h-4 lg:w-5 lg:h-5 transform ${isPersonal ? 'scale-110 animate-bounce' : 'scale-100'}`}
                 style={isPersonal ? { filter: 'drop-shadow(0 0 2px rgba(255,215,0,0.8))' } : { filter: 'drop-shadow(0 1px 1px rgba(0,0,0,0.3))' }}
               />
             );
@@ -298,18 +303,18 @@ export default function WeeksOfLife() {
 
         rowWeeks.push(
           <div
-            key={weekNumber}
+            key={`${rowIndex}-${week}`}
             className={cellClass}
             style={style}
-            onMouseEnter={() => {
+            onMouseEnter={isValidWeek ? () => {
               setHoverWeek({
                 week: weekNumber,
                 year: Math.floor(weekNumber / 52),
                 event: lifeEvent
               });
               setShowHoverData(true);
-            }}
-            onMouseLeave={() => setShowHoverData(false)}
+            } : undefined}
+            onMouseLeave={isValidWeek ? () => setShowHoverData(false) : undefined}
           >
             {content}
           </div>

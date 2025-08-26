@@ -336,7 +336,7 @@ export default function WeeksOfLife() {
           </h2>
           <p className="text-slate-600 mb-6">Each colorful square represents a week of your journey since the wood paneling era</p>
           <div className="bg-gradient-to-r from-slate-100 to-slate-200 h-2 rounded-full overflow-hidden shadow-inner max-w-md mx-auto">
-            <div 
+            <div
               className="h-full bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 rounded-full transition-all duration-1000 ease-out shadow-sm"
               style={{ width: `${(stats.ageInYears / 80) * 100}%` }}
             />
@@ -345,9 +345,9 @@ export default function WeeksOfLife() {
             Age: {stats.ageInYears} • Week {getFormattedNumber(stats.weeksLived)} of your story
           </p>
         </div>
-        
+
         <div className="w-full">
-          {years}
+          {rows}
         </div>
         
         {showHoverData && hoverWeek && (

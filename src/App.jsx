@@ -1,4 +1,4 @@
-import WeeksOfLife from './components/WeeksOfLife'
+import WeeksOfLife from './components/WeeksOfLife.jsx'
 
 function App() {
   return (

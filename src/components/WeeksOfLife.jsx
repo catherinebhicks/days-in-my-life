@@ -316,7 +316,7 @@ export default function WeeksOfLife() {
           <div className="w-8 text-xs text-slate-400 text-right flex-shrink-0">
             {year === 0 ? '0' : year % 10 === 0 ? year : ''}
           </div>
-          <div className="flex gap-0.5 flex-wrap">
+          <div className="flex gap-0.5 sm:gap-1 md:gap-1.5 lg:gap-2 flex-wrap">
             {yearWeeks}
           </div>
         </div>

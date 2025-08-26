@@ -245,26 +245,31 @@ export default function WeeksOfLife() {
 
   const renderLifeVisualization = () => {
     if (!stats) return null;
-    
+
     const totalYears = 80;
     const weeksPerYear = 52;
+    const weeksPerRow = 26; // 6 months per row for bigger blocks
     const currentYear = Math.floor(stats.weeksLived / weeksPerYear);
-    
-    const years = [];
-    for (let year = 0; year < Math.min(currentYear + 5, totalYears); year++) {
-      const yearWeeks = [];
-      const startWeek = year * weeksPerYear;
-      
-      for (let week = 0; week < weeksPerYear; week++) {
+
+    const rows = [];
+    const totalRowsToShow = Math.min(currentYear + 5, totalYears) * 2; // 2 rows per year
+
+    for (let rowIndex = 0; rowIndex < totalRowsToShow; rowIndex++) {
+      const rowWeeks = [];
+      const startWeek = rowIndex * weeksPerRow;
+      const year = Math.floor(startWeek / weeksPerYear);
+      const halfYear = (rowIndex % 2 === 0) ? 1 : 2; // First or second half of year
+
+      for (let week = 0; week < weeksPerRow; week++) {
         const weekNumber = startWeek + week;
         const isPast = weekNumber < stats.weeksLived;
         const isCurrent = weekNumber === stats.weeksLived;
         const lifeEvent = getLifeEventForWeek(weekNumber);
-        
-        let cellClass = "relative w-2 h-2 sm:w-3 sm:h-3 md:w-4 md:h-4 lg:w-5 lg:h-5 xl:w-6 xl:h-6 rounded-sm transition-all duration-300 cursor-pointer hover:scale-125 flex items-center justify-center ";
+
+        let cellClass = "relative w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 lg:w-7 lg:h-7 xl:w-8 xl:h-8 rounded-sm transition-all duration-300 cursor-pointer hover:scale-125 flex items-center justify-center ";
         let style = {};
         let content = null;
-        
+
         if (isPast) {
           // Use the same gradient pattern for all past weeks, regardless of events
           const hue = ((weekNumber / 52) * 30 + 200) % 360;
@@ -274,13 +279,13 @@ export default function WeeksOfLife() {
             backgroundColor: `hsl(${hue}, ${saturation}%, ${lightness}%)`,
             boxShadow: '0 1px 3px rgba(0,0,0,0.1)'
           };
-          
+
           if (lifeEvent) {
             const isPersonal = lifeEvent.type === 'personal';
             const IconComponent = lifeEvent.icon;
             content = (
-              <IconComponent 
-                className={`absolute text-white w-2 h-2 transform ${isPersonal ? 'scale-110 animate-bounce' : 'scale-100'}`}
+              <IconComponent
+                className={`absolute text-white w-3 h-3 sm:w-4 sm:h-4 transform ${isPersonal ? 'scale-110 animate-bounce' : 'scale-100'}`}
                 style={isPersonal ? { filter: 'drop-shadow(0 0 2px rgba(255,215,0,0.8))' } : { filter: 'drop-shadow(0 1px 1px rgba(0,0,0,0.3))' }}
               />
             );
@@ -290,15 +295,15 @@ export default function WeeksOfLife() {
         } else {
           cellClass += "bg-gradient-to-br from-slate-100 to-slate-200 hover:from-slate-200 hover:to-slate-300 ";
         }
-        
-        yearWeeks.push(
+
+        rowWeeks.push(
           <div
             key={weekNumber}
             className={cellClass}
             style={style}
             onMouseEnter={() => {
-              setHoverWeek({ 
-                week: weekNumber, 
+              setHoverWeek({
+                week: weekNumber,
                 year: Math.floor(weekNumber / 52),
                 event: lifeEvent
               });
@@ -310,14 +315,14 @@ export default function WeeksOfLife() {
           </div>
         );
       }
-      
-      years.push(
-        <div key={year} className="flex items-center gap-3 mb-2">
-          <div className="w-12 text-sm text-slate-400 text-right flex-shrink-0">
-            {year === 0 ? '0' : year % 10 === 0 ? year : ''}
+
+      rows.push(
+        <div key={rowIndex} className="flex items-center gap-3 mb-2">
+          <div className="w-16 text-sm text-slate-400 text-right flex-shrink-0">
+            {halfYear === 1 ? `${year + 1}` : ''}
           </div>
-          <div className="flex gap-0.5 sm:gap-1 md:gap-1.5 lg:gap-2 flex-wrap">
-            {yearWeeks}
+          <div className="flex gap-1 sm:gap-1.5 md:gap-2 lg:gap-2.5 xl:gap-3 flex-wrap">
+            {rowWeeks}
           </div>
         </div>
       );

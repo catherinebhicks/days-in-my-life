@@ -322,7 +322,7 @@ export default function WeeksOfLife() {
       }
 
       rows.push(
-        <div key={rowIndex} className="flex items-center gap-3 mb-2">
+        <div key={rowIndex} className="flex items-center gap-4 mb-3">
           <div className="w-16 text-sm text-slate-400 text-right flex-shrink-0">
             {halfYear === 1 ? `${year + 1}` : ''}
           </div>

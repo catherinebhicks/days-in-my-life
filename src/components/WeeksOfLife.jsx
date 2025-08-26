@@ -356,11 +356,20 @@ export default function WeeksOfLife() {
           {rows}
         </div>
 
-        {/* Mobile message */}
-        <div className="md:hidden text-center p-8 bg-slate-50 rounded-lg">
-          <p className="text-slate-600">
-            Your life visualization is available on tablet and desktop screens for the best experience.
-          </p>
+        {/* Fun placeholder for mobile/tablet */}
+        <div className="md:hidden flex flex-col items-center justify-center p-12 bg-gradient-to-br from-slate-100 to-slate-200 rounded-xl border-2 border-dashed border-slate-300">
+          <div className="bg-white rounded-2xl p-8 shadow-lg mb-4">
+            <Calendar className="w-16 h-16 text-slate-400 mx-auto mb-2" />
+            <div className="flex justify-center space-x-1 mb-3">
+              <div className="w-3 h-3 bg-purple-400 rounded-sm"></div>
+              <div className="w-3 h-3 bg-blue-400 rounded-sm"></div>
+              <div className="w-3 h-3 bg-emerald-400 rounded-sm"></div>
+              <div className="w-3 h-3 bg-amber-400 rounded-sm"></div>
+              <div className="w-3 h-3 bg-rose-400 rounded-sm"></div>
+            </div>
+          </div>
+          <p className="text-sm text-slate-500 font-medium">Life Timeline Visualization</p>
+          <p className="text-xs text-slate-400 mt-1">Best viewed on larger screens</p>
         </div>
         
         {showHoverData && hoverWeek && (

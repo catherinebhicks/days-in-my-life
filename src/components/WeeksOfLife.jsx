@@ -19,22 +19,39 @@ const WeeksOfLife = () => {
   const completionPercentage = ((weeksLived / totalWeeks) * 100).toFixed(1);
 
   const renderWeekGrid = () => {
-    const weeks = [];
-    for (let i = 0; i < totalWeeks; i++) {
-      const isLived = i < weeksLived;
-      weeks.push(
-        <div
-          key={i}
-          className={`w-1 h-1 md:w-2 md:h-2 rounded-sm transition-colors duration-200 ${
-            isLived 
-              ? 'bg-blue-500 hover:bg-blue-600' 
-              : 'bg-gray-200 hover:bg-gray-300'
-          }`}
-          title={`Week ${i + 1}${isLived ? ' (lived)' : ' (future)'}`}
-        />
+    const years = [];
+
+    for (let year = 0; year < lifeExpectancy; year++) {
+      const weekRows = [];
+
+      for (let week = 0; week < 52; week++) {
+        const weekNumber = year * 52 + week;
+        const isLived = weekNumber < weeksLived;
+
+        weekRows.push(
+          <div
+            key={weekNumber}
+            className={`w-2 h-2 md:w-3 md:h-3 rounded-sm transition-colors duration-200 ${
+              isLived
+                ? 'bg-blue-500 hover:bg-blue-600'
+                : 'bg-gray-200 hover:bg-gray-300'
+            }`}
+            title={`Year ${year + 1}, Week ${week + 1}${isLived ? ' (lived)' : ' (future)'}`}
+          />
+        );
+      }
+
+      years.push(
+        <div key={year} className="flex gap-1 items-center">
+          <div className="w-8 text-xs text-gray-400 text-right mr-2">{year + 1}</div>
+          <div className="flex gap-1">
+            {weekRows}
+          </div>
+        </div>
       );
     }
-    return weeks;
+
+    return years;
   };
 
   const milestones = [

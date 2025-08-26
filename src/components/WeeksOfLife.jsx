@@ -357,19 +357,25 @@ export default function WeeksOfLife() {
         </div>
 
         {/* Fun placeholder for mobile/tablet */}
-        <div className="md:hidden flex flex-col items-center justify-center p-12 bg-gradient-to-br from-slate-100 to-slate-200 rounded-xl border-2 border-dashed border-slate-300">
-          <div className="bg-white rounded-2xl p-8 shadow-lg mb-4">
-            <Calendar className="w-16 h-16 text-slate-400 mx-auto mb-2" />
+        <div className="md:hidden flex flex-col items-center justify-center p-8 bg-gradient-to-br from-slate-100 to-slate-200 rounded-xl border-2 border-dashed border-slate-300">
+          <div className="bg-white rounded-2xl p-6 shadow-lg mb-4">
+            <Calendar className="w-12 h-12 text-slate-400 mx-auto mb-3" />
             <div className="flex justify-center space-x-1 mb-3">
-              <div className="w-3 h-3 bg-purple-400 rounded-sm"></div>
-              <div className="w-3 h-3 bg-blue-400 rounded-sm"></div>
-              <div className="w-3 h-3 bg-emerald-400 rounded-sm"></div>
-              <div className="w-3 h-3 bg-amber-400 rounded-sm"></div>
-              <div className="w-3 h-3 bg-rose-400 rounded-sm"></div>
+              <div className="w-2 h-2 bg-purple-400 rounded-sm"></div>
+              <div className="w-2 h-2 bg-blue-400 rounded-sm"></div>
+              <div className="w-2 h-2 bg-emerald-400 rounded-sm"></div>
+              <div className="w-2 h-2 bg-amber-400 rounded-sm"></div>
+              <div className="w-2 h-2 bg-rose-400 rounded-sm"></div>
             </div>
           </div>
-          <p className="text-sm text-slate-500 font-medium">Life Timeline Visualization</p>
-          <p className="text-xs text-slate-400 mt-1">Best viewed on larger screens</p>
+          <p className="text-sm text-slate-500 font-medium mb-4">Life Timeline Visualization</p>
+          <div className="w-full max-w-xs">
+            <img
+              src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=300&fit=crop&crop=entropy&auto=format&q=80"
+              alt="Colorful journey through time"
+              className="w-full h-32 object-cover rounded-lg shadow-md border-2 border-white"
+            />
+          </div>
         </div>
         
         {showHoverData && hoverWeek && (

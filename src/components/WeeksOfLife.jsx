@@ -346,8 +346,16 @@ export default function WeeksOfLife() {
           </p>
         </div>
 
-        <div className="w-full">
+        {/* Hide visualization on mobile, show on tablet and up */}
+        <div className="hidden md:block w-full">
           {rows}
+        </div>
+
+        {/* Mobile message */}
+        <div className="md:hidden text-center p-8 bg-slate-50 rounded-lg">
+          <p className="text-slate-600">
+            Your life visualization is available on tablet and desktop screens for the best experience.
+          </p>
         </div>
         
         {showHoverData && hoverWeek && (

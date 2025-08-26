@@ -130,7 +130,7 @@ const WeeksOfLife = () => {
             <h3 className="text-xl font-semibold text-gray-800 mb-4 text-center">
               Your Life Timeline ({lifeExpectancy} years)
             </h3>
-            <div className="grid grid-cols-52 gap-1 md:gap-2 justify-center">
+            <div className="space-y-1 overflow-x-auto">
               {renderWeekGrid()}
             </div>
             <div className="flex justify-between items-center mt-4 text-sm text-gray-600">

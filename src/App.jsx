@@ -1,5 +1,4 @@
-import React from 'react'
-import WeeksOfLife from './components/WeeksOfLife.jsx'
+import WeeksOfLife from './components/WeeksOfLife'
 
 function App() {
   return (

@@ -313,7 +313,7 @@ export default function WeeksOfLife() {
       
       years.push(
         <div key={year} className="flex items-center gap-3 mb-2">
-          <div className="w-8 text-xs text-slate-400 text-right flex-shrink-0">
+          <div className="w-12 text-sm text-slate-400 text-right flex-shrink-0">
             {year === 0 ? '0' : year % 10 === 0 ? year : ''}
           </div>
           <div className="flex gap-0.5 sm:gap-1 md:gap-1.5 lg:gap-2 flex-wrap">

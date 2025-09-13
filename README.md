@@ -24,6 +24,7 @@ Customization
 Adding Your Personal Milestones
 
 Edit the getLifeEventForWeek function in src/components/WeeksOfLife.jsx to add your own important dates:
+
 javascript// Add your milestone here
 
 1234: { 
@@ -43,10 +44,13 @@ Modify the renderDecadeBreakdowns function to add or change cultural events for 
 
 
 MIT License - feel free to use this code for your own life visualization!
+
 Acknowledgments
 
 Inspired by the "Life in Weeks" concept
+
 Built with love for the wood paneling era, the dawn of MTV, and mustard yellow and avocado furniture with plastic coverings
-Cultural context data sourced from various historical references through a quick ask of the interwebs, and my limited knowledge of the eras I grew up in that didnt go up in a puff of smoke in my early 20s.
+
+Cultural context data is sourced from various historical references through a quick search of the Internet and my limited knowledge of the eras I grew up in that didn't go up in a puff of smoke in my early 20s.
 
 Icons provided by Lucide React
